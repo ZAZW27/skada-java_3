@@ -8,7 +8,9 @@ abstract class Vehicle{
         this.seats = seats;
         this.name = name;
         this.fuels = fuels;
-        this.speed = speed;
+        if(speed > 200){
+            this.speed = 200;
+        }
     }
 
     // Getter
@@ -24,7 +26,7 @@ abstract class Vehicle{
     public void setSpeed(int speed){this.speed = speed;}
 
     public abstract void move();
-    public abstract double calculateFuelConsumption(double fuel);
+    public abstract double calculateFuelConsumption(double distance);
 }
 
 class LandVehicle extends Vehicle{
@@ -63,6 +65,17 @@ public class Main{
             120, 
             4);
         car.move();
-        car.calculateFuelConsumption(200); 
+        double konsumsi = car.calculateFuelConsumption(200); 
+        System.out.println(konsumsi);
+
+        Vehicle bike = new LandVehicle(
+            2, 
+            "Motor Bike", 
+            8.1, 
+            100, 
+            2); 
+        bike.move(); 
+        double konsumsiMotor = bike.calculateFuelConsumption(100); 
+        System.out.println(konsumsiMotor);
     }
 }
